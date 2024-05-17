@@ -1,5 +1,8 @@
+"use client";
+
 import type { ReactElement } from "react";
+import Home from "./pages/home/home";
 
 export default function HomePage(): ReactElement {
-  return <p>Hello world!</p>;
+  return <Home />;
 }

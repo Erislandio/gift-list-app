@@ -1,6 +1,7 @@
+import withMT from "@material-tailwind/react/utils/withMT";
 import { Config } from "tailwindcss";
 
-export default {
+export default withMT({
   content: ["./src/**/*.tsx"],
   theme: {
     fontFamily: {
@@ -14,7 +15,8 @@ export default {
       "white": "white",
       "black": "black",
 
-      "primary": "#202C59"
+      "primary": "#413e65",
+      "secondary": "#f25c54"
     },
 
     fontSize: {
@@ -50,7 +52,5 @@ export default {
         "max-width": "max-width"
       }
     }
-  },
-
-  plugins: []
-} satisfies Config;
+  }
+} satisfies Config);
