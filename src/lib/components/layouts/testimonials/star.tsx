@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { ReactElement } from "react";
 
 export default function Star(): ReactElement {
