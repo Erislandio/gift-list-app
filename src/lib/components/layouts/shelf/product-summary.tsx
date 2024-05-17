@@ -25,14 +25,13 @@ export default function ProductSummary({ cesta }: { cesta: TipoDeCesta }): React
           />
           <div className="astra-shop-summary-wrap text-center">
             <span className="text-[0.85rem] font-thin font-sans mb-1 block opacity-[0.9]">Cesta Personalizada</span>
-            <a
-              href="https://websitedemos.net/gift-shop-04/product/adventure-power-dinosaur-toy/"
+            <div
               className="ast-loop-product__link"
             >
               <h2 className="text-base font-bold font-sans text-primary">
                 {cesta.nome}
               </h2>
-            </a>
+            </div>
           </div>
         </Link>
       </div>
