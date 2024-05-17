@@ -10,8 +10,7 @@
     "test:e2e": "playwright test",
     "sb:dev": "storybook dev -p 6006",
     "sb:build": "storybook build",
-    "sb:start": "serve storybook-static",
-    "preinstall": "npx only-allow pnpm"
+    "sb:start": "serve storybook-static"
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",
