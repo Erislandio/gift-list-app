@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactElement, useEffect, useState } from "react";
 
-export const PRODUCT_BY_SLUG_QUERY = gql`
+const PRODUCT_BY_SLUG_QUERY = gql`
 query tipoDeCestasBySlug($slug: String!){
   tipoDeCesta(where: { link: $slug }) {
     id
