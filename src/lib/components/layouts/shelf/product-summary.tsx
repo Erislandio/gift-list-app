@@ -11,7 +11,7 @@ export default function ProductSummary({ cesta }: { cesta: TipoDeCesta }): React
     <li className="p-3">
       <div className="astra-shop-thumbnail-wrap">
         <Link
-          href={`/${cesta.link}`}
+          href={`/product/${cesta.link}`}
           className="block"
         >
           <Image

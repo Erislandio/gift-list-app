@@ -32,7 +32,7 @@ const SHELF_QUERY = gql`
 export default function Shelf({ id }: { id: string }): ReactElement {
 
   const { data, loading } = useQuery<{ tipoDeCestas: TipoDeCesta[] }>(SHELF_QUERY, {
-    fetchPolicy: "cache-first"
+    ssr: true
   });
 
   return (

@@ -5,6 +5,14 @@ export interface TipoDeCesta {
     imagem: Imagem[];
     descricao: Descricao;
     materialDaCestas: MaterialDaCesta[];
+    produtos: Produto[];
+}
+
+export interface Produto {
+    id: string;
+    nome: string;
+    preco: number;
+    imagem: Imagem[];
 }
 
 export interface Imagem {
