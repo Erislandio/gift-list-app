@@ -229,8 +229,23 @@ export default function PDP({ params }: { params: { slug: string } }): ReactElem
           </h2>
           <h3 className="text-2xl font-bold">{formatarParaBRL(totalItens)}</h3>
         </div>
-        <Button variant="primary" className="rounded-none w-full bg-secondary">
-                    FAZER PEDIDO
+        <Button variant="primary" className="rounded-none w-full bg-secondary" onClick={() => {
+          const phoneNumber = "5511992559017";
+
+          const message = `Olá! :-)
+gostaria de saber mais sobre a *${data?.tipoDeCesta?.nome}!*: 
+- Material: ${items.nome} ${formatarParaBRL(items.preco)}.
+${extras.length ? `- Itens extras: ${extras.map(ex => ex.nome).join(", ")} ` : ""}.
+- Obs: ${texto ?? "Sem Observações"}
+          `;
+
+          const encodedMessage = encodeURIComponent(message);
+
+          const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+          window.open(whatsappLink);
+        }}>
+            FAZER PEDIDO
         </Button>
       </div>
     </section>
