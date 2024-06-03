@@ -41,28 +41,6 @@ export default function Header(): ReactElement {
                 </div>
               </div>
             </div>
-            <div className="flex justify-end items-center">
-              <div
-                className="ast-builder-layout-element ast-flex site-header-focus-item"
-                data-section="section-header-mobile-trigger"
-              >
-                <div className="ast-button-wrap">
-                  <button
-                    type="button"
-                    className="menu-toggle main-header-menu-toggle ast-mobile-menu-trigger-minimal"
-                    aria-expanded="false"
-                    data-index={0}
-                  >
-                    <span className="screen-reader-text"></span>
-                    <span className="mobile-menu-toggle-icon">
-                      <span className="ahfb-svg-iconset ast-inline-flex svg-baseline">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" className="text-primary"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" /></svg>
-                      </span>
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

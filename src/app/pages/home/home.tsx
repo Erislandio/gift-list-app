@@ -7,7 +7,9 @@ export default function HomePage(): ReactElement {
   return (
     (
       <Fragment>
-        <HeroBanner />
+        <HeroBanner className="md:flex hidden" imageUrl="https://websitedemos.net/gift-shop-04/wp-content/uploads/sites/919/2021/07/bg-0005.jpg" />
+        <HeroBanner className="md:hidden flex" imageUrl="https://websitedemos.net/gift-shop-04/wp-content/uploads/sites/919/2021/07/box-01.jpg" />
+
         <Shelf id="shelf-home" />
         <Testimonials id="testimonials" />
       </Fragment>

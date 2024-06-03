@@ -58,7 +58,7 @@ export default function Shelf({ id }: { id: string }): ReactElement {
                 <div className="elementor-widget-container">
                   <div className="elementor-shortcode">
                     <div className="woocommerce ">
-                      <ul className="products">
+                      <ul className="products md:block flex items-center gap-4 justify-center flex-wrap">
                         {data?.tipoDeCestas?.map(item => <ProductSummary cesta={item} key={item.id} />)}
                       </ul>
                     </div>

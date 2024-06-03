@@ -1,14 +1,14 @@
 import { ReactElement } from "react";
 import { Button } from "../button";
 
-export default function HeroBanner(): ReactElement {
+export default function HeroBanner({ className, imageUrl }: { imageUrl: string; className: string}): ReactElement {
   return (
     <section
-      className="bg-no-repeat bg-center bg-cover pb-2"
+      className={`bg-no-repeat bg-center bg-cover pb-2 ${className}`}
       data-id="bd64c32"
       data-element_type="section"
       style={{
-        backgroundImage: "url(https://websitedemos.net/gift-shop-04/wp-content/uploads/sites/919/2021/07/bg-0005.jpg)",
+        backgroundImage: `url(${imageUrl})`,
         backgroundPosition: "center center"
       }}
       data-settings='{"background_background":"classic"}'
@@ -26,9 +26,16 @@ export default function HeroBanner(): ReactElement {
               data-element_type="widget"
               data-widget_type="heading.default"
             >
-              <div className="elementor-widget-container">
-                <h2 className="leading-[1.4em] m-0 text-primary text-2xl font-sans font-semibold">
+              <div className="elementor-widget-container md:flex hidden">
+                <h2 className="md:leading-[1.4em] m-0 text-primary text-2xl font-sans font-semibold">
                                     A melhor maneira de fazer alguém feliz...
+                </h2>
+              </div>
+              <div className="elementor-widget-container md:hidden flex">
+                <h2 className="leading-[1.4em] m-0 text-primary font-sans font-semibold text-left max-w-96" style={{
+                  fontSize: "4rem"
+                }}>
+                  A melhor maneira de fazer alguém feliz...
                 </h2>
               </div>
             </div>
