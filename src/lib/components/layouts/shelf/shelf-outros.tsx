@@ -1,45 +1,44 @@
 /* eslint-disable @next/next/no-img-element */
-import { TipoDeCesta } from "#/lib/typings/gift";
 import { gql, useQuery } from "@apollo/client";
 import { ReactElement } from "react";
-import ProductSummary from "./product-summary";
+import { ProductSummaryOutro } from "./product-summary";
 import ShelfTitle from "./shlef-title";
 
 const SHELF_QUERY = gql`
 {
-  tipoDeCestas {
-    id
-    link
+  outrosProduto {
     nome
+    slug
     preco
-    imagem {
+    imagem(first: 1) {
       url
-    }
-    descricao {
-      html
-    }
-    materialDaCestas {
-      id
-      nome
-      preco
-      imagem {
-        url
-      }
     }
   }
 }
 `;
 
-export default function Shelf({ id }: { id: string }): ReactElement {
+export interface OutrosProduto {
+  nome: string;
+  slug: string;
+  preco: number;
+  imagem: Imagem[];
+  descricao: string;
+}
 
-  const { data, loading } = useQuery<{ tipoDeCestas: TipoDeCesta[] }>(SHELF_QUERY, {
+export interface Imagem {
+  url: string;
+}
+
+export default function ShelfOutros({ id }: { id: string }): ReactElement {
+
+  const { data, loading } = useQuery<{ outrosProduto: OutrosProduto[] }>(SHELF_QUERY, {
     ssr: true
   });
 
   return (
     <section
       id={id}
-      className="py-10 px-5"
+      className="py-10 px-5 pt-0"
     >
       <div className="elementor-container elementor-column-gap-no">
         <div
@@ -48,7 +47,7 @@ export default function Shelf({ id }: { id: string }): ReactElement {
           data-element_type="column"
         >
           <div className="m-5">
-            <ShelfTitle title="cestas" />
+            <ShelfTitle title="Outros produtos" />
             {!loading ? (
               <div
                 className="elementor-element elementor-element-625c38b elementor-widget elementor-widget-shortcode"
@@ -60,7 +59,7 @@ export default function Shelf({ id }: { id: string }): ReactElement {
                   <div className="elementor-shortcode">
                     <div className="woocommerce ">
                       <ul className="products md:block flex items-center gap-4 justify-center flex-wrap">
-                        {data?.tipoDeCestas?.map(item => <ProductSummary cesta={item} key={item.id} />)}
+                        {data?.outrosProduto?.map(item => <ProductSummaryOutro product={item} key={item.nome} />)}
                       </ul>
                     </div>
                   </div>

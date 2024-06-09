@@ -2,46 +2,28 @@
 "use client";
 
 import { Button } from "#/lib/components/atoms/button";
-import { MaterialDaCesta, Produto, TipoDeCesta } from "#/lib/typings/gift";
+import { OutrosProduto } from "#/lib/components/layouts/shelf/shelf-outros";
 import { gql, useQuery } from "@apollo/client";
-import { Carousel, Checkbox, Label, Radio, Textarea } from "flowbite-react";
+import { Carousel, Textarea } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 
 const PRODUCT_BY_SLUG_QUERY = gql`
-query tipoDeCestasBySlug($slug: String!){
-  tipoDeCesta(where: { link: $slug }) {
-    id
-    link
+query outrosProduto($slug: String!) {
+  outrosProdutos(where: { slug: $slug}) {
     nome
+    slug
     preco
+    descricao
     imagem {
       url
     }
-    descricao {
-      html
-    }
-    produtos {
-      id
-      nome
-      preco
-      imagem {
-        url
-      }
-    }
-    materialDaCestas {
-      id
-      nome
-      preco
-      imagem {
-        url
-      }
-    }
   }
-}`;
+}  
+`;
 
-export function formatarParaBRL(valor: number): string {
+export function formatarParaBRL(valor = 0): string {
   return valor.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL"
@@ -104,34 +86,21 @@ function LeftControl(): ReactElement {
 }
 
 export default function PDP({ params }: { params: { slug: string } }): ReactElement {
-  const [items, setItems] = useState<MaterialDaCesta>({
-    preco: 0,
-    id: "",
-    imagem: { url: "" },
-    nome: ""
-  });
-  const [extras, setExtras] = useState<Produto[]>([]);
   const [texto, setTexto] = useState("");
-  const { data, loading } = useQuery<{ tipoDeCesta: TipoDeCesta }>(PRODUCT_BY_SLUG_QUERY, {
+  const { data, loading } = useQuery<{ outrosProdutos: OutrosProduto }>(PRODUCT_BY_SLUG_QUERY, {
     variables: {
       slug: params.slug
     },
     ssr: true
   });
 
-  useEffect(() => {
-    if (data?.tipoDeCesta) {
-      setItems(data.tipoDeCesta.materialDaCestas[0]);
-    }
-  }, [data]);
-
-  if (loading || !data) {
+  if (loading || !data?.outrosProdutos) {
     return <></>;
   }
 
-  const { tipoDeCesta } = data;
+  const { outrosProdutos: { preco, imagem, nome, descricao } } = data;
 
-  const totalItens = extras.reduce((acc, current) => acc + current.preco, items.preco + tipoDeCesta.preco);
+  const totalItens = preco;
 
   return <main>
     <section className="mt-16">
@@ -145,9 +114,9 @@ export default function PDP({ params }: { params: { slug: string } }): ReactElem
             }
           }
         }}>
-          {tipoDeCesta.imagem?.map(image => (
+          {imagem?.map(image => (
             <div key={image.url}>
-              <Image title={tipoDeCesta.nome} src={image.url} alt={tipoDeCesta.nome} width={375} height={375} loading="eager" />
+              <Image title={nome} src={image.url} alt={nome} width={375} height={375} loading="eager" />
             </div>
           ))}
         </Carousel>
@@ -159,72 +128,22 @@ export default function PDP({ params }: { params: { slug: string } }): ReactElem
                         Cestas &nbsp;/&nbsp;
           </span>
           <span>
-            {tipoDeCesta.nome}
+            {nome}
           </span>
         </nav>
 
-        <h1 title={tipoDeCesta.nome} className="font-light text-primary text-2xl mt-1">{tipoDeCesta.nome}</h1>
+        <h1 title={nome} className="font-light text-primary text-2xl mt-1">{nome}</h1>
         <h3 className="text-xl mb-4 text-secondary font-bold">
-          {formatarParaBRL(tipoDeCesta.preco)}
+          {formatarParaBRL(preco)}
         </h3>
         <div className="pb-6">
-          <h2 className="text-lg mb-4 text-primary">Itens: </h2>
-
+          <h2 className="text-lg mb-4 text-primary">Descrição: </h2>
           <p className="font-light text-sm text-gray-600" dangerouslySetInnerHTML={{
-            __html: tipoDeCesta.descricao.html
+            __html: descricao
           }}>
           </p>
         </div>
 
-        <div className="pb-6">
-          <h2 className="text-lg mb-4 text-primary">Material da Cesta</h2>
-          <fieldset className="flex max-w-md flex-col gap-4">
-            {tipoDeCesta.materialDaCestas.map(mat => (
-              <div className="flex items-center gap-2" key={mat.id}>
-                <Radio checked={mat.id === items.id} onChange={() => {
-                  setItems(mat);
-                }} id={mat.nome} name="material" value={mat.nome} defaultChecked />
-                <Label className="font-light text-sm text-gray-500" htmlFor={mat.nome}>
-                  {mat.nome}
-                  <b className="font-bold text-sm text-primary inline-block ml-2">Incluso</b>
-                </Label>
-              </div>
-            ))}
-          </fieldset>
-        </div>
-
-        {
-          tipoDeCesta?.produtos?.length ? (
-            <div className="pb-6">
-              <h2 className="text-lg mb-4 text-primary">Itens extras: </h2>
-              <div className="flex max-w-md flex-col gap-4" id="checkbox">
-                {tipoDeCesta.produtos.map(product => (
-                  <div className="flex items-center gap-2" key={product.id}>
-                    <Checkbox onChange={() => {
-                      if (extras.find(extra => extra.id === product.id)) {
-                        setExtras([
-                          ...extras.filter(item => item.id !== product.id)
-                        ]);
-                      } else {
-                        setExtras([
-                          ...extras,
-                          product
-                        ]);
-                      }
-                    }} id={product.nome} theme={{
-                      root: {
-                        base: "bg-primary"
-                      }
-                    }} />
-                    <Label className="font-light text-sm text-gray-500" htmlFor={product.nome}>{product.nome}
-                      <b className="font-bold text-sm text-primary inline-block ml-2">{formatarParaBRL(product.preco)}</b>
-                    </Label>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null
-        }
         <div className="pb-6">
           <h2 className="text-lg mb-4 text-primary">Observações</h2>
           <div className="max-w-md">
@@ -241,10 +160,9 @@ export default function PDP({ params }: { params: { slug: string } }): ReactElem
           const phoneNumber = "5511992559017";
 
           const message = `Olá! :-)
-gostaria de saber mais sobre a *${data?.tipoDeCesta?.nome}!*:
-- Preço: ${formatarParaBRL(totalItens)}
-- Produto: ${window.location.href}
-${extras.length ? `- Itens extras: ${extras.map(ex => ex.nome).join(", ")} ` : ""}.
+gostaria de saber mais sobre a *${nome}!*:
+- Preço: ${formatarParaBRL(totalItens)}.
+- Produto: ${window.location.href}.
 - Obs: ${texto ? texto : "Sem Observações"}
           `;
 

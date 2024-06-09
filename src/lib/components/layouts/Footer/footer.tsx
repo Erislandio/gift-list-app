@@ -4,7 +4,7 @@ import { ReactElement } from "react";
 
 export default function Footer(): ReactElement {
   return (
-    <footer id="footer" className="bg-gray-100 px-5 ">
+    <footer id="footer" className="bg-primary px-5 mt-6">
       <div className="pt-9 pb-4">
         <div
           className="ast-builder-layout-element ast-flex site-header-focus-item"
@@ -20,10 +20,10 @@ export default function Footer(): ReactElement {
                 rel="home"
                 aria-current="page"
               >
-                <h2 className="text-primary font-sans font-extrabold text-2xl leading-4">
+                <h2 className="text-white font-sans font-extrabold text-2xl leading-4">
                                   BENDITABOX
                 </h2>
-                <small className="text-primary font-light text-sm leading-normal" style={{
+                <small className="text-white font-light text-sm leading-normal" style={{
                   fontSize: "9px"
                 }}>CESTAS PERSONALIZADAS</small>
               </Link>
@@ -33,18 +33,14 @@ export default function Footer(): ReactElement {
       </div>
       <ul className="flex items-center justify-center flex-col">
         <li>
-          <Link href="/sobre-nos" className="font-light text-primary text-sm">
-            Sobre Nós
-          </Link>
-        </li>
-        <li>
-          <Link href="/sobre-nos" className="font-light text-primary text-sm">
+          <Link href="https://wa.me/5511992559017" target="_blank" className="font-light text-white text-sm">
             FAQ
           </Link>
         </li>
       </ul>
 
-      <div className="flex items-center gap-2 justify-center pb-8 mt-5">
+      <h5 className="text-center text-white font-sans text-sm mt-5">Nossas Redes Sociais</h5>
+      <div className="flex items-center gap-2 justify-center pb-8 mt-2">
         {/* <a
           href="#"
           aria-label="Twitter"
@@ -78,12 +74,12 @@ export default function Footer(): ReactElement {
           aria-label="Instagram"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: "#8a3ab9", backgroundColor: "transparent" }}
+          style={{ color: "#fff", backgroundColor: "transparent" }}
           className="ast-builder-social-element ast-inline-flex ast-instagram footer-social-item"
         >
           <span className="ahfb-svg-iconset ast-inline-flex svg-baseline">
-            <svg width="20px" height="20px" className="w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path fill="rgb(65 62 101)" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+            <svg width="20px" height="20px" className="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path fill="#fff" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
             </svg>
           </span>
         </a>

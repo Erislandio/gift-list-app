@@ -6,6 +6,7 @@ export interface TipoDeCesta {
     descricao: Descricao;
     materialDaCestas: MaterialDaCesta[];
     produtos: Produto[];
+    preco: number;
 }
 
 export interface Produto {
