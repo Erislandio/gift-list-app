@@ -1,5 +1,5 @@
-import { formatarParaBRL } from "#/app/product/[slug]/page";
 import type { TipoDeCesta } from "#/lib/typings/gift";
+import { formatarParaBRL } from "#/lib/utils/f";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactElement } from "react";
