@@ -3,6 +3,7 @@
 
 import { Button } from "#/lib/components/atoms/button";
 import { OutrosProduto } from "#/lib/components/layouts/shelf/shelf-outros";
+import { formatarParaBRL } from "#/lib/utils/f";
 import { gql, useQuery } from "@apollo/client";
 import { Carousel, Textarea } from "flowbite-react";
 import Image from "next/image";
@@ -22,13 +23,6 @@ query outrosProduto($slug: String!) {
   }
 }  
 `;
-
-export function formatarParaBRL(valor = 0): string {
-  return valor.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
-}
 
 function RightControll(): ReactElement {
   return (

@@ -3,6 +3,7 @@
 
 import { Button } from "#/lib/components/atoms/button";
 import { MaterialDaCesta, Produto, TipoDeCesta } from "#/lib/typings/gift";
+import { formatarParaBRL } from "#/lib/utils/f";
 import { gql, useQuery } from "@apollo/client";
 import { Carousel, Checkbox, Label, Radio, Textarea } from "flowbite-react";
 import Image from "next/image";
@@ -40,13 +41,6 @@ query tipoDeCestasBySlug($slug: String!){
     }
   }
 }`;
-
-export function formatarParaBRL(valor: number): string {
-  return valor.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
-}
 
 function RightControll(): ReactElement {
   return (
